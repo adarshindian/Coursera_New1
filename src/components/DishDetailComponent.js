@@ -1,5 +1,7 @@
 import React from 'react';
-import {Card,CardImg,CardImgOverlay,CardText,CardBody,CardTitle} from 'reactstrap';
+import {Card,CardImg,CardImgOverlay,CardText,CardBody,CardTitle,Breadcrumb,BreadcrumbItem} from 'reactstrap';
+import { Link } from 'react-router-dom';
+
 
 
 
@@ -34,11 +36,12 @@ import {Card,CardImg,CardImgOverlay,CardText,CardBody,CardTitle} from 'reactstra
         if (comments == null) {
             return (<div></div>)
         }
+        else{
         const cmnts = comments.map(comment => {
            
             return (
                
-                <li key={comment.id}>
+                <li key={comment.dishId}>
                     <p>{comment.comment}</p>
                     <p>-- {comment.author},
                     &nbsp;
@@ -59,28 +62,38 @@ import {Card,CardImg,CardImgOverlay,CardText,CardBody,CardTitle} from 'reactstra
                 </ul>
 
             </div>
-        )
+        )}
     }
 
 
    const DishDetail=(props)=>{
-        const dish = props.dish
+      
 
-        console.log(dish);
+       
         
-        if (dish == null) {
-            return (<div></div>);
-        }
+        if (props.dish != null) {
+         
 
-        const dishItem = <DishToDisplay dish={dish} ></DishToDisplay>;
-        const dishComment = <RenderComments comments={dish.comments}></RenderComments>;
-
+       
         return (
+            <div className="conatiner">
+            <div className="row">
+    <Breadcrumb>
+        {/* <BreadcrumbItem><Link to='/home'>Home</Link></BreadcrumbItem> */}
+        <BreadcrumbItem><Link to='/menu'>Menu</Link></BreadcrumbItem>
+        <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
+    </Breadcrumb>
+    <div className="col-12">
+        {/* <h3>{props.dish.name}</h3> */}
+        <h5>{props.comment1.id}</h5>
+    </div>
+</div>
             <div className='row'>
-                {dishItem}
-                {dishComment}
+            <DishToDisplay dish={props.dish} ></DishToDisplay>;
+      <RenderComments comments={props.comment1}></RenderComments>;
+
             </div>
-        )
+            </div> )}
     }
 
 
