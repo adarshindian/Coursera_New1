@@ -1,5 +1,5 @@
 
-import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Jumbotron, Modal,ModalHeader,ModalBody, Button } from 'reactstrap';
+import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Jumbotron, Modal,ModalHeader,ModalBody, Button,Form, FormGroup, Label, Input } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import React, {Component} from 'react';
 
@@ -14,8 +14,16 @@ class Header extends Component {
         };
         this.toggleNav = this.toggleNav.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
+        this.handlesLogin=this.handlesLogin.bind();
       }
 
+      handlesLogin(event)
+      {
+            this.toggleModal();
+            alert("Username: "+ this.username.value+"Password: "+ this.password.value);
+            event.preventDefault();
+
+      }
       toggleNav() {
         this.setState({
           isNavOpen: !this.state.isNavOpen
@@ -73,6 +81,30 @@ this.setState(
                     <ModalHeader toggle={this.toggleModal}>
                         Login
                     </ModalHeader>
+                    <Form onSubmit={this.handlesLogin}>
+                        <FormGroup>
+                            <Label htmlFor="username">Username</Label>
+                            <Input type="text" id="username" name="username"
+                                innerRef={(input)=>this.username=input}
+                            />
+                        </FormGroup>
+                        
+                        <FormGroup>
+                            <Label htmlFor="password">Password</Label>
+                            <Input type="password" id="password" name="password"
+                                innerRef={(input)=>this.password=input}
+                            />
+                        </FormGroup>
+                        <FormGroup check>
+                            <Label check>
+                                <Input type="checkbox" name="remember"
+                                     innerRef={(input)=>this.remember=input}
+                                />
+                                Remember Me
+                            </Label>
+                        </FormGroup>
+                        <Button type="submit" value="submit" className="bg-primary" color="primary">Login</Button>
+                    </Form>
                     <ModalBody>
 
                     </ModalBody>
