@@ -1,6 +1,7 @@
 import React from 'react';
 import {Card,CardImg,CardImgOverlay,CardText,CardBody,CardTitle,Breadcrumb,BreadcrumbItem} from 'reactstrap';
 import { Link } from 'react-router-dom';
+import Button from '@restart/ui/esm/Button';
 
 
 
@@ -32,6 +33,12 @@ import { Link } from 'react-router-dom';
     //  {
     //      console.log('Disdetail componnt Comments Invoked');
     //  }
+    function SubmitButton()
+    {
+        return(
+           <Button type="submit" className="fa fa-info submit">Submit Comment</Button>
+        );
+    }
    function  RenderComments({comments}){
         if (comments == null) {
             return (<div></div>)
@@ -59,6 +66,9 @@ import { Link } from 'react-router-dom';
                 <h4> Comments </h4>
                 <ul className='list-unstyled'>
                     {cmnts}
+                    <SubmitButton>
+
+                    </SubmitButton>
                 </ul>
 
             </div>
